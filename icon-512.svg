@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+<rect width="512" height="512" rx="92.16" fill="#ede9e3"/>
+<rect x="61.44" y="61.44" width="389.12" height="389.12" rx="64.512" fill="#f7f5f2" stroke="#ddd8d0" stroke-width="10.24"/>
+<text x="256" y="245.76" text-anchor="middle" font-size="194.56" dominant-baseline="central">&#x1F4AC;</text>
+<text x="256" y="399.36" text-anchor="middle" font-family="sans-serif" font-weight="800" font-size="56.32" fill="#4a4540">AAC</text>
+</svg>

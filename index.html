@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#ede9e3">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="AAC">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon-192.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.svg">
+  <title>AAC Board</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div id="app">
+
+    <div class="top-nav">
+      <button class="settings-btn" id="settingsBtn" type="button">☰</button>
+      <div class="top-nav-utils">
+        <div class="search-area" id="searchArea">
+          <button class="search-btn" id="searchBtn" type="button">🔍</button>
+          <input type="text" class="search-input" id="searchInput" placeholder="Search..." data-i18n-ph="searchPlaceholder" autocomplete="off">
+        </div>
+        <div class="profile-area" id="profileArea">
+          <button class="profile-btn" id="profileBtn" type="button">
+            <span class="profile-avatar" id="profileAvatar">D</span>
+            <span class="profile-name" id="profileName">Default</span>
+            <span class="profile-lock" id="profileLock">🔒</span>
+          </button>
+          <div class="profile-panel" id="profilePanel">
+            <div class="profile-mode-row">
+              <div class="mode-toggle" id="modeToggle">
+                <span class="mode-toggle-opt active" data-mode="user"><span class="mode-icon">🔒</span> <span data-i18n="modeUser">User</span></span>
+                <span class="mode-toggle-opt" data-mode="caretaker"><span class="mode-icon">🔓</span> <span data-i18n="modeCaretaker">Caretaker</span></span>
+              </div>
+            </div>
+            <div class="profile-list" id="profileList"></div>
+            <div class="profile-add-row">
+              <input type="text" class="profile-add-input" id="profileAddInput"
+                     placeholder="New profile..." data-i18n-ph="profilePlaceholder" autocomplete="off">
+              <button class="profile-add-btn" id="profileAddBtn" type="button">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="strip-wrap">
+      <div class="strip" id="strip">
+        <div class="strip-main">
+          <span class="strip-ph" id="ph" data-i18n="stripPlaceholder">Tap cards to build a sentence</span>
+          <button class="strip-arrow strip-arrow-l" id="stripL" type="button">‹</button>
+          <div class="strip-words" id="words"></div>
+          <button class="strip-arrow strip-arrow-r" id="stripR" type="button">›</button>
+        </div>
+        <div class="strip-ai" id="stripAi">
+          <span class="strip-ai-text" id="stripAiText"></span>
+          <button class="strip-ai-retry" id="stripAiRetry" type="button">↻</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="suggest-bar" id="suggestBar">
+      <div class="suggest-pills" id="suggestPills"></div>
+    </div>
+
+    <div class="strip-ops" id="btns">
+      <button class="sbtn sbtn-clear" id="bClear" type="button">✕</button>
+      <button class="sbtn sbtn-save" id="bSave" type="button">⭐</button>
+      <button class="sbtn sbtn-speak" id="bSpeak" type="button">▶</button>
+    </div>
+
+    <div class="deck-area">
+      <div class="shelf-wrap" id="shelfWrap">
+        <button class="fan-arrow fan-arrow-up" id="shelfUp" type="button">▲</button>
+        <div class="shelf-scroll" id="shelfScroll">
+          <div class="shelf" id="shelf"></div>
+        </div>
+        <button class="fan-arrow fan-arrow-down" id="shelfDown" type="button">▼</button>
+      </div>
+      <div class="open-view" id="openView">
+        <div class="open-head">
+          <button class="back-btn" id="backBtn">←</button>
+          <span class="open-icon" id="oIcon"></span>
+          <span class="open-title" id="oTitle"></span>
+        </div>
+        <div class="fan-wrap">
+          <button class="fan-arrow fan-arrow-up" id="fanUp" type="button">▲</button>
+          <div class="fan" id="fanScroll">
+            <div class="fan-grid" id="fan"></div>
+          </div>
+          <button class="fan-arrow fan-arrow-down" id="fanDown" type="button">▼</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="binder-bar">
+      <button class="binder-arrow" id="binderL" type="button">‹</button>
+      <div class="binder-tabs" id="binderTabs"></div>
+      <button class="binder-arrow" id="binderR" type="button">›</button>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal">
+        <div class="modal-title" id="modalTitle">New Card</div>
+        <div class="modal-preview" id="modalPreview">📁
+          <button class="modal-upload-clear" id="modalClearImg" type="button">✕</button>
+        </div>
+        <div class="modal-upload">
+          <button class="modal-upload-btn" id="modalEmojiBtn" type="button">😀 <span data-i18n="btnEmoji">Emoji</span></button>
+          <button class="modal-upload-btn" id="modalCameraBtn" type="button">📷 <span data-i18n="btnCamera">Camera</span></button>
+          <label class="modal-upload-btn">🖼️ <span data-i18n="btnGallery">Gallery</span>
+            <input type="file" id="modalFile" accept="image/*" class="sr-only">
+          </label>
+          <button class="modal-upload-btn" id="modalSymbolBtn" type="button">🔍 <span data-i18n="btnSymbols">Symbols</span></button>
+        </div>
+        <div class="emoji-pick" id="emojiPick">
+          <input type="text" class="emoji-input" id="modalEmoji" placeholder="Type or paste an emoji..." data-i18n-ph="emojiPlaceholder" autocomplete="off">
+        </div>
+        <div class="camera-view" id="cameraView">
+          <video id="cameraVideo" autoplay playsinline></video>
+          <canvas id="cameraCanvas" class="sr-only"></canvas>
+          <div class="camera-controls">
+            <button class="camera-switch" id="cameraSwitch" type="button">⟳</button>
+            <button class="camera-snap" id="cameraSnap" type="button"></button>
+          </div>
+        </div>
+        <div class="symbol-search" id="symbolSearch">
+          <input type="text" class="symbol-input" id="symbolInput" placeholder="Search symbols..." data-i18n-ph="symbolPlaceholder" autocomplete="off">
+          <div class="symbol-grid" id="symbolGrid"></div>
+        </div>
+        <div class="modal-field">
+          <label data-i18n="modalLabel">Label</label>
+          <input type="text" id="modalLabel" placeholder="e.g. dog" autocomplete="off">
+        </div>
+        <div class="modal-colors" id="modalColors"></div>
+        <div class="modal-field" id="binderDeckField">
+          <label data-i18n="modalDecksToInclude">Decks to include</label>
+          <div class="binder-deck-list" id="binderDeckList"></div>
+        </div>
+        <div class="modal-actions">
+          <button class="modal-btn modal-cancel" id="modalCancel" type="button" data-i18n="btnCancel">Cancel</button>
+          <button class="modal-btn modal-save" id="modalSave" type="button" data-i18n="btnSave">Save</button>
+        </div>
+        <button class="modal-delete" id="modalDelete" type="button" data-i18n="btnDelete">Delete</button>
+      </div>
+    </div>
+
+    <div class="options-page" id="optionsPage">
+      <div class="options-head">
+        <button class="options-back" id="optionsBack" type="button">←</button>
+        <span class="options-title" data-i18n="settingsTitle">Settings</span>
+      </div>
+      <div class="options-body">
+        <div class="options-section">
+          <div class="options-section-title" data-i18n="sectionGeneral">General</div>
+          <div class="setting-row"><span class="setting-label" data-i18n="labelSound">Sound on tap</span>
+            <div class="toggle on" id="togSound"></div>
+          </div>
+          <div class="setting-row"><span class="setting-label" data-i18n="labelShowLabels">Show labels</span>
+            <div class="toggle on" id="togLabels"></div>
+          </div>
+          <div class="setting-row"><span class="setting-label" data-i18n="labelAnimations">Animations</span>
+            <div class="toggle on" id="togAnim"></div>
+          </div>
+        </div>
+        <div class="options-section">
+          <div class="options-section-title" data-i18n="sectionLanguage">Language</div>
+          <div class="setting-row">
+            <span class="setting-label" data-i18n="labelLanguage">Language</span>
+            <select class="setting-select" id="langSelect" title="Language"></select>
+          </div>
+        </div>
+        <div class="options-section">
+          <div class="options-section-title" data-i18n="sectionVoice">Voice</div>
+          <div class="setting-row">
+            <span class="setting-label" data-i18n="labelVoiceEngine">Voice engine</span>
+            <select class="setting-select" id="voiceEngineSelect" title="Voice engine"></select>
+          </div>
+          <div class="setting-row" id="voiceSelectRow">
+            <span class="setting-label" data-i18n="labelVoice">Voice</span>
+            <select class="setting-select" id="voiceSelect" title="Voice selection"></select>
+          </div>
+          <div class="setting-row" id="voiceSpeedRow">
+            <span class="setting-label" data-i18n="labelSpeed">Speed</span>
+            <input type="range" class="setting-range" id="voiceSpeed" min="0.5" max="1.5" step="0.05" value="0.85" title="Speech speed">
+          </div>
+          <div class="setting-row voice-test-row">
+            <button class="voice-test-btn" id="voiceTest" type="button" data-i18n="testVoice">Test voice</button>
+          </div>
+        </div>
+        <div class="options-section">
+          <div class="options-section-title" data-i18n="sectionAi">AI Assist</div>
+          <div class="setting-row"><span class="setting-label" data-i18n="labelSmartSentences">Smart sentences</span>
+            <div class="toggle on" id="togCompanion"></div>
+          </div>
+          <div class="setting-row"><span class="setting-label" data-i18n="labelWordHints">Word hints</span>
+            <div class="toggle on" id="togSuggestions"></div>
+          </div>
+        </div>
+        <div class="options-section">
+          <div class="options-section-title" data-i18n="sectionHelp">Help</div>
+          <div class="setting-row">
+            <span class="setting-label" data-i18n="labelTutorial">App tutorial</span>
+            <button class="report-open-btn" id="tutorialBtn" type="button" data-i18n="btnShowTutorial">Show</button>
+          </div>
+          <div class="setting-version">v1.0.1</div>
+        </div>
+        <div class="options-section">
+          <div class="options-section-title" data-i18n="sectionReports">Reports</div>
+          <div class="setting-row">
+            <span class="setting-label" data-i18n="labelViewReports">Usage reports</span>
+            <button class="report-open-btn" id="reportOpenBtn" type="button" data-i18n="btnViewReports">View</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="options-page" id="reportsPage">
+      <div class="options-head">
+        <button class="options-back" id="reportsBack" type="button">←</button>
+        <span class="options-title" data-i18n="reportsTitle">Reports</span>
+      </div>
+      <div class="options-body">
+        <div class="report-tabs" id="reportTabs">
+          <button class="report-tab active" data-range="today" type="button" data-i18n="reportToday">Today</button>
+          <button class="report-tab" data-range="week" type="button" data-i18n="reportWeek">This Week</button>
+          <button class="report-tab" data-range="month" type="button" data-i18n="reportMonth">This Month</button>
+        </div>
+        <div class="report-summary" id="reportSummary"></div>
+        <div class="options-section">
+          <div class="options-section-title" data-i18n="reportTopWords">Top Words</div>
+          <div class="report-bars" id="reportWordBars"></div>
+        </div>
+        <div class="options-section">
+          <div class="options-section-title" data-i18n="reportTopDecks">Top Decks</div>
+          <div class="report-bars" id="reportDeckBars"></div>
+        </div>
+        <div class="options-section">
+          <div class="options-section-title" data-i18n="reportAiUsage">AI Assist</div>
+          <div class="report-ai-stats" id="reportAiStats"></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- #app -->
+
+  <div class="tut-overlay" id="tutOverlay">
+    <div class="tut-spotlight" id="tutSpotlight"></div>
+    <div class="tut-bubble" id="tutBubble">
+      <div class="tut-text" id="tutText"></div>
+      <div class="tut-footer">
+        <span class="tut-dots" id="tutDots"></span>
+        <button class="tut-btn" id="tutNext" type="button" data-i18n="tutNext">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="lang.js"></script>
+  <script src="langs/en.js"></script>
+  <script src="langs/he.js"></script>
+  <script src="langs/uk.js"></script>
+  <script src="langs/pt.js"></script>
+  <script src="https://js.puter.com/v2/"></script>
+  <script src="profiles.js"></script>
+  <div class="update-toast" id="updateToast"></div>
+  <script src="stats.js"></script>
+  <script src="app.js"></script>
+  <script src="ai-friend.js"></script>
+  <script src="chat.js"></script>
+  <script src="reports.js"></script>
+  <script src="tutorial.js"></script>
+</body>
+
+</html>
