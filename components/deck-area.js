@@ -63,6 +63,7 @@ export function openDeck(k) {
   if (d.img) { oIcon.innerHTML = `<img class="deck-img" src="${d.img}" alt="${k}">`; } else { oIcon.textContent = d.i; }
   document.getElementById('oTitle').textContent = k;
   shelfWrap.classList.add('out'); openView.classList.add('vis');
+  emit('deck:open');
   const g = document.getElementById('fan'); g.innerHTML = '';
   d.w.forEach((w, i) => {
     const c = document.createElement('div');
@@ -93,6 +94,7 @@ export function closeDeck() {
   openView.classList.remove('vis');
   setTimeout(() => shelfWrap.classList.remove('out'), 30);
   renderShelf();
+  emit('deck:close');
 }
 
 // Card interaction (drag to strip + tap)

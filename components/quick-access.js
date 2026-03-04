@@ -44,4 +44,10 @@ export function init() {
 
   // Re-render when decks change (card edits, language switch, etc.)
   on('deck:change', render);
+  on('deck:open', function () {
+    if (qaEl) qaEl.style.display = 'none';
+  });
+  on('deck:close', function () {
+    if (qaEl) qaEl.style.display = '';
+  });
 }

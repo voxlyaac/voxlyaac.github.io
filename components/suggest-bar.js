@@ -216,6 +216,12 @@ export function init() {
     clearTimeout(suggestDebounce);
     suggestDebounce = setTimeout(updateSuggestions, 50);
   });
+  on('deck:open', function () {
+    hideSuggestions();
+  });
+  on('deck:close', function () {
+    updateSuggestions();
+  });
   on('deck:change', function () {
     buildWordIndex();
     updateSuggestions();
