@@ -1,0 +1,103 @@
+practical suggestions with real-life examples:
+
+Expanding “where / when / how / with whom”
+
+Currently, the child can request something, but the system could better support contextual expansion.
+
+Example in practice:
+
+A child selects:
+“I want go”
+
+But clinically, we want to support expansions like:
+I want to go to school.
+I want to go to grandma’s house.
+I want to go tomorrow.
+I want to go with mom.
+I want to go by car.
+
+Why this matters:
+Level 1 and 2 users often begin with single words or short combinations. If the system makes it easy to add location, time, manner, and people, it scaffolds syntactic development and supports more complete communicative intent.
+
+Suggestion:
+Make “where”, “when”, “how”, and “who” easily accessible after action verbs — possibly through predictive modeling or a structured expansion bar.
+
+
+Descriptors (Adjectives)
+
+Currently, many utterances are functional but not descriptive.
+
+Example in practice:
+
+Instead of:
+“I want cookie”
+
+We want to support:
+I want big cookie.
+I want chocolate cookie.
+I want hot food.
+I feel sad.
+The dog is big.
+The ball is red.
+
+Why this matters:
+Descriptors increase expressive precision and support cognitive categorization skills. Many autistic children at early AAC stages struggle to move beyond labeling and requesting.
+
+Suggestion:
+Create a visually accessible and predictable descriptor group that can easily attach to nouns.
+
+
+Commenting (Not only requesting)
+
+Many AAC systems unintentionally reinforce requesting because adults respond more to requests.
+
+But clinically, we must model commenting.
+
+Examples:
+
+That is funny.
+I like this.
+I don’t like this.
+It’s scary.
+Wow!
+That is mine.
+It’s broken.
+It’s raining.
+
+Why this matters:
+Commenting supports social reciprocity and pragmatic development. Level 1 users especially need structured modeling opportunities to move from “I want” to “I see”, “I think”, “I feel”.
+
+Suggestion:
+Add a “Comment” quick-access area with core pragmatic starters:
+I see…
+I think…
+I like…
+It is…
+That is…
+
+
+Short Narratives (Emerging storytelling)
+
+For Level 2 users, we should begin supporting simple sequencing.
+
+Example in therapy:
+
+After a small event:
+I went park.
+I play ball.
+I fall.
+I cry.
+Mom help.
+
+Even at a telegraphic level, this is a narrative attempt.
+
+Why this matters:
+Narrative ability is strongly linked to later academic language and literacy.
+
+Suggestion:
+Possibly include:
+First / Then / After / Finally
+Yesterday / Today / Tomorrow
+Simple past verbs
+
+Or a “Story mode” scaffold with 3–4 structured slots.

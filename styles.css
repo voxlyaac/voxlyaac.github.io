@@ -19,6 +19,9 @@
   --c-descriptors: #6B9DC7;
   --c-things: #E47A20;
   --c-social: #C78DA3;
+  --c-places: #4ABFA5;
+  --c-comments: #E87CA0;
+  --c-time: #7B8EC2;
   --c-phrases: #9B7DC7;
   --space-xs: 4px;
   --space-sm: 8px;
@@ -118,18 +121,18 @@ body {
 .strip-arrow {
   display: none;
   flex-shrink: 0;
-  width: 22px;
-  height: 44px;
+  width: 44px;
+  height: 48px;
   border: none;
   background: var(--border);
-  border-radius: 6px;
-  font-size: 18px;
+  border-radius: 8px;
+  font-size: 24px;
   font-weight: 800;
   color: var(--text);
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  opacity: 0.5;
+  opacity: 0.7;
   transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
 }
 
@@ -247,6 +250,11 @@ body {
   background: var(--c-feelings);
 }
 
+.sbtn-back {
+  background: var(--c-things);
+  font-size: 18px;
+}
+
 .sbtn-save {
   background: var(--c-phrases);
   font-size: 18px;
@@ -260,6 +268,44 @@ body {
   0% { transform: scale(1); }
   40% { transform: scale(1.25); }
   100% { transform: scale(1); }
+}
+
+/* QUICK ACCESS — core words without navigation */
+.quick-access {
+  display: flex;
+  gap: var(--space-sm);
+  padding: var(--space-xs) var(--space-md);
+  overflow-x: auto;
+  scrollbar-width: none;
+  flex-shrink: 0;
+}
+.quick-access::-webkit-scrollbar { display: none; }
+.quick-access:empty { display: none; }
+.quick-card {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 72px;
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--border);
+  border-top: 3px solid var(--qc, var(--c-actions));
+  cursor: pointer;
+  transition: transform var(--dur) var(--ease);
+  padding: 4px 2px;
+}
+.quick-card:active { transform: scale(0.93); }
+.quick-card .qc-e { font-size: 26px; line-height: 1; }
+.quick-card .qc-l {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--text);
+  text-align: center;
+  line-height: 1.1;
+  margin-top: 2px;
 }
 
 /* DECK AREA */
@@ -576,17 +622,17 @@ body {
   display: none;
   flex-shrink: 0;
   width: 100%;
-  height: 22px;
+  height: 52px;
   border: none;
   background: var(--border);
-  border-radius: 6px;
-  font-size: 18px;
+  border-radius: 10px;
+  font-size: 26px;
   font-weight: 800;
   color: var(--text);
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  opacity: 0.5;
+  opacity: 0.7;
   transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
 }
 
@@ -1001,6 +1047,30 @@ body {
   }
 
 }
+
+/* === GRID SIZE VARIANTS === */
+/* Large grid — fewer, bigger cards for motor accessibility */
+.grid-large .fan-grid {
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--space-lg);
+}
+.grid-large .card-e { font-size: 52px; }
+.grid-large .card-l { font-size: var(--font-lg); }
+.grid-large .deck { width: 130px; height: 156px; }
+.grid-large .add-deck { width: 130px; height: 156px; }
+.grid-large .deck-icon { font-size: 40px; }
+
+/* Small grid — more cards on screen */
+.grid-small .fan-grid {
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: var(--space-sm);
+}
+.grid-small .card-e { font-size: 30px; }
+.grid-small .card-l { font-size: var(--font-xs); }
+.grid-small .deck { width: 84px; height: 100px; }
+.grid-small .add-deck { width: 84px; height: 100px; }
+.grid-small .deck-icon { font-size: 24px; }
+.grid-small .deck-name { font-size: var(--font-xs); }
 
 /* === SUGGESTION BAR === */
 .suggest-bar {
@@ -1524,17 +1594,18 @@ body {
 
 .binder-arrow {
   display: none;
-  width: 22px;
+  width: 44px;
   flex-shrink: 0;
   border: none;
   background: var(--border);
-  font-size: 18px;
+  border-radius: 8px;
+  font-size: 26px;
   font-weight: 800;
   color: var(--text);
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  opacity: 0.5;
+  opacity: 0.7;
   transition: opacity var(--dur) var(--ease);
 }
 
@@ -2347,4 +2418,62 @@ body.mode-user .profile-lock { opacity: 1; }
 
 .tut-btn:active {
   transform: scale(0.95);
+}
+
+/* === HIGH CONTRAST MODE === */
+
+body.high-contrast {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --border: #333333;
+  --text: #000000;
+  --text-light: #333333;
+}
+
+body.high-contrast .card {
+  border: 3px solid #000;
+}
+
+body.high-contrast .card-l,
+body.high-contrast .cl,
+body.high-contrast .qc-l,
+body.high-contrast .deck-name,
+body.high-contrast .deck-count {
+  color: #000;
+  font-weight: 800;
+}
+
+body.high-contrast .strip {
+  border: 2px solid #000;
+}
+
+body.high-contrast .chip {
+  border: 2px solid #000;
+}
+
+body.high-contrast .deck {
+  border: 3px solid #000;
+}
+
+body.high-contrast .binder-tab {
+  border: 2px solid #000;
+}
+
+body.high-contrast .fan-arrow,
+body.high-contrast .strip-arrow,
+body.high-contrast .binder-arrow {
+  border: 2px solid #000;
+  opacity: 1;
+}
+
+body.high-contrast .sbtn {
+  border: 2px solid #000;
+}
+
+body.high-contrast .quick-card {
+  border: 2px solid #000;
+}
+
+body.high-contrast .suggest-pill {
+  border: 2px solid #000;
 }

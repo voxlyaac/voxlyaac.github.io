@@ -1,8 +1,5 @@
-// langs/pt.js — Brazilian Portuguese language pack
-(function () {
-  'use strict';
-
-  AAC.Lang.register('pt', {
+// langs/pt.js — Brazilian Portuguese language pack (ES module)
+export const pack = {
     name: 'Portuguese',
     nativeName: 'Português (Brasil)',
     dir: 'ltr',
@@ -21,6 +18,11 @@
       labelSound: 'Som ao tocar',
       labelShowLabels: 'Mostrar legendas',
       labelAnimations: 'Animações',
+      labelHighContrast: 'Alto contraste',
+      labelGridSize: 'Tamanho da grade',
+      gridLarge: 'Grande',
+      gridMedium: 'Médio',
+      gridSmall: 'Pequeno',
       labelLanguage: 'Idioma',
       labelVoiceEngine: 'Motor de voz',
       voiceEngineBrowser: 'Navegador',
@@ -121,29 +123,40 @@
       'mamãe': ['ajuda', 'quero', 'ir', 'por favor'],
       'papai': ['ajuda', 'quero', 'ir', 'por favor'],
       'amigo': ['quero', 'brincar', 'ir', 'ajuda'],
+      'irmã': ['ajuda', 'brincar', 'quero', 'parar'],
+      'irmão': ['ajuda', 'brincar', 'quero', 'parar'],
+      'bebê': ['ajuda', 'quero', 'dormir', 'comer'],
       'professor': ['ajuda', 'por favor', 'quero', 'ver'],
       'médico': ['ajuda', 'por favor', 'dor', 'remédio'],
+      'vovô': ['ajuda', 'ir', 'quero', 'por favor'],
+      'vovó': ['ajuda', 'ir', 'quero', 'por favor'],
       'todos': ['oi', 'tchau', 'ajuda', 'por favor'],
-      // Ações
+      // Ações — expandido com lugares e tempo
       'quero': ['comer', 'beber', 'brincar', 'ir'],
-      'ir': ['aqui', 'lá', 'por favor', 'banheiro'],
-      'fazer': ['mais', 'bom', 'ajuda', 'por favor'],
-      'comer': ['comida', 'mais', 'por favor', 'quero'],
-      'beber': ['água', 'mais', 'por favor', 'quero'],
-      'ajuda': ['por favor', 'mamãe', 'papai', 'professor'],
-      'parar': ['por favor', 'não', 'esperar'],
-      'brincar': ['mais', 'brinquedo', 'por favor', 'quero'],
-      'dormir': ['cansado', 'por favor', 'quero'],
-      'ver': ['aqui', 'lá', 'médico', 'por favor'],
+      'ir': ['escola', 'parque', 'casa', 'vovó'],
+      'fazer': ['mais', 'bom', 'ajuda', 'agora'],
+      'comer': ['comida', 'mais', 'agora', 'por favor'],
+      'beber': ['água', 'mais', 'agora', 'por favor'],
+      'ajuda': ['por favor', 'mamãe', 'papai', 'agora'],
+      'parar': ['por favor', 'não', 'agora', 'esperar'],
+      'brincar': ['fora', 'parque', 'brinquedo', 'mais'],
+      'dormir': ['cansado', 'agora', 'por favor', 'quero'],
+      'ver': ['isso é', 'aqui', 'lá', 'uau'],
+      // Passado (suporte narrativo)
+      'fui': ['escola', 'parque', 'vovó', 'loja'],
+      'brinquei': ['fora', 'parque', 'brinquedo', 'amigo'],
+      'comi': ['comida', 'muito', 'mais', 'bom'],
+      'caí': ['dor', 'ajuda', 'mamãe', 'chorei'],
+      'chorei': ['triste', 'ajuda', 'mamãe', 'papai'],
       // Sentimentos / Estados
-      'feliz': ['brincar', 'mais', 'obrigado', 'sim'],
+      'feliz': ['brincar', 'mais', 'obrigado', 'uau'],
       'triste': ['ajuda', 'quero', 'mamãe', 'papai'],
       'bravo': ['parar', 'ajuda', 'quero', 'não'],
-      'com medo': ['ajuda', 'mamãe', 'papai', 'quero'],
-      'cansado': ['dormir', 'ajuda', 'quero', 'por favor'],
+      'com medo': ['ajuda', 'mamãe', 'papai', 'assustador'],
+      'cansado': ['dormir', 'ajuda', 'quero', 'agora'],
       'dor': ['ajuda', 'remédio', 'médico', 'mamãe'],
-      'gosto': ['comida', 'brincar', 'mais', 'quero'],
-      'não gosto': ['parar', 'não', 'ajuda', 'quero'],
+      'gosto': ['comida', 'brincar', 'mais', 'é'],
+      'não gosto': ['parar', 'não', 'ajuda', 'assustador'],
       // Descritores
       'mais': ['por favor', 'quero', 'comida', 'água'],
       'menos': ['por favor', 'quero', 'bom'],
@@ -151,52 +164,89 @@
       'um pouco': ['mais', 'quero', 'por favor'],
       'bom': ['mais', 'sim', 'obrigado', 'feliz'],
       'mau': ['ajuda', 'parar', 'não', 'quero'],
-      'aqui': ['por favor', 'quero', 'ajuda', 'ver'],
+      'aqui': ['por favor', 'quero', 'ajuda', 'agora'],
       'lá': ['ir', 'quero', 'ver', 'por favor'],
-      // Coisas / Necessidades
-      'água': ['por favor', 'mais', 'beber', 'quero'],
-      'comida': ['por favor', 'mais', 'comer', 'quero'],
-      'banheiro': ['por favor', 'ir', 'ajuda'],
-      'brinquedo': ['por favor', 'brincar', 'quero', 'mais'],
-      'celular': ['por favor', 'quero', 'mais', 'ajuda'],
-      'remédio': ['por favor', 'ajuda', 'quero', 'dor'],
-      'roupa': ['por favor', 'ajuda', 'quero'],
+      // Coisas / Necessidades — expandido com descritores
+      'água': ['por favor', 'mais', 'fria', 'quente'],
+      'comida': ['por favor', 'mais', 'quente', 'bom'],
+      'banheiro': ['por favor', 'ir', 'agora', 'ajuda'],
+      'brinquedo': ['por favor', 'brincar', 'novo', 'grande'],
+      'celular': ['por favor', 'quero', 'agora', 'meu'],
+      'remédio': ['por favor', 'ajuda', 'agora', 'dor'],
+      'roupa': ['por favor', 'ajuda', 'novo', 'quero'],
       // Social / Pragmático
       'oi': ['mamãe', 'papai', 'amigo', 'todos'],
       'tchau': ['mamãe', 'papai', 'amigo', 'todos'],
-      'por favor': ['ajuda', 'mais', 'obrigado'],
+      'por favor': ['ajuda', 'mais', 'agora', 'obrigado'],
       'obrigado': ['tchau', 'mais', 'sim', 'feliz'],
       'sim': ['por favor', 'quero', 'mais', 'ir'],
       'não': ['parar', 'quero', 'não gosto', 'ajuda'],
       'esperar': ['por favor', 'ajuda', 'quero'],
       'vamos': ['ir', 'brincar', 'comer', 'fazer'],
-      // Combinações
+      // Combinações — expandido
       'eu quero': ['comer', 'beber', 'brincar', 'ir'],
-      'eu ir': ['aqui', 'lá', 'banheiro', 'por favor'],
-      'eu gosto': ['comida', 'brincar', 'brinquedo', 'água'],
+      'eu ir': ['escola', 'parque', 'casa', 'vovó'],
+      'eu gosto': ['comida', 'brincar', 'brinquedo', 'é'],
+      'eu vejo': ['grande', 'engraçado', 'assustador', 'bonito'],
+      'eu acho': ['sim', 'não', 'bom', 'engraçado'],
+      'eu sinto': ['feliz', 'triste', 'com medo', 'cansado'],
       'você quer': ['brincar', 'comer', 'ir', 'ajuda'],
-      'quero comer': ['comida', 'por favor', 'mais'],
-      'quero beber': ['água', 'por favor', 'mais'],
-      'quero brincar': ['brinquedo', 'mais', 'por favor'],
-      'quero ir': ['aqui', 'lá', 'banheiro', 'por favor'],
-      'quero ajuda': ['por favor', 'mamãe', 'papai']
+      'quero comer': ['comida', 'agora', 'por favor', 'mais'],
+      'quero beber': ['água', 'agora', 'por favor', 'mais'],
+      'quero brincar': ['fora', 'parque', 'brinquedo', 'agora'],
+      'quero ir': ['escola', 'parque', 'casa', 'vovó'],
+      'quero ajuda': ['por favor', 'agora', 'mamãe', 'papai'],
+      // Comentários / Pragmática
+      'eu vejo': ['grande', 'engraçado', 'assustador', 'bonito'],
+      'eu acho': ['sim', 'não', 'bom', 'engraçado'],
+      'eu sinto': ['feliz', 'triste', 'com medo', 'cansado'],
+      'é': ['grande', 'quente', 'frio', 'quebrado'],
+      'isso é': ['engraçado', 'assustador', 'meu', 'bonito'],
+      'uau': ['grande', 'bonito', 'engraçado', 'bom'],
+      'engraçado': ['uau', 'mais', 'gosto', 'feliz'],
+      'meu': ['por favor', 'parar', 'quero', 'não'],
+      'quebrado': ['ajuda', 'triste', 'quero', 'novo'],
+      'assustador': ['ajuda', 'mamãe', 'parar', 'com medo'],
+      // Lugares
+      'escola': ['ir', 'amanhã', 'hoje', 'por favor'],
+      'parque': ['ir', 'brincar', 'hoje', 'quero'],
+      'casa': ['ir', 'agora', 'quero', 'mamãe'],
+      'vovó': ['ir', 'amanhã', 'quero', 'por favor'],
+      'fora': ['ir', 'brincar', 'agora', 'quero'],
+      'dentro': ['ir', 'brincar', 'agora', 'quero'],
+      'carro': ['ir', 'quero', 'agora', 'por favor'],
+      'loja': ['ir', 'quero', 'por favor', 'mamãe'],
+      // Tempo / Narrativa
+      'hoje': ['ir', 'brincar', 'comer', 'quero'],
+      'amanhã': ['ir', 'escola', 'brincar', 'quero'],
+      'ontem': ['fui', 'brinquei', 'comi', 'foi'],
+      'primeiro': ['comer', 'ir', 'brincar', 'quero'],
+      'depois': ['ir', 'comer', 'brincar', 'fazer'],
+      'após': ['comer', 'brincar', 'ir', 'dormir'],
+      'finalmente': ['ir', 'comer', 'brincar', 'casa'],
+      'agora': ['quero', 'ir', 'ajuda', 'por favor']
     },
 
     defaults: {
       decks: {
-        pessoas: { hex: '#F5C518', i: '👤', w: [{ e: '🙋', l: 'eu' }, { e: '👤', l: 'você' }, { e: '👩', l: 'mamãe' }, { e: '👨', l: 'papai' }, { e: '👫', l: 'amigo' }, { e: '🧑‍🏫', l: 'professor' }, { e: '👨‍⚕️', l: 'médico' }, { e: '👥', l: 'todos' }] },
-        ações: { hex: '#6BAF7B', i: '🏃', w: [{ e: '🤲', l: 'quero' }, { e: '🚶', l: 'ir' }, { e: '✊', l: 'fazer' }, { e: '🍽️', l: 'comer' }, { e: '🥤', l: 'beber' }, { e: '🤝', l: 'ajuda' }, { e: '🛑', l: 'parar' }, { e: '🎮', l: 'brincar' }, { e: '💤', l: 'dormir' }, { e: '👀', l: 'ver' }] },
+        pessoas: { hex: '#F5C518', i: '👤', w: [{ e: '🙋', l: 'eu' }, { e: '👤', l: 'você' }, { e: '👩', l: 'mamãe' }, { e: '👨', l: 'papai' }, { e: '👧', l: 'irmã' }, { e: '👦', l: 'irmão' }, { e: '👶', l: 'bebê' }, { e: '👫', l: 'amigo' }, { e: '🧑‍🏫', l: 'professor' }, { e: '👨‍⚕️', l: 'médico' }, { e: '👴', l: 'vovô' }, { e: '👵', l: 'vovó' }, { e: '👥', l: 'todos' }] },
+        ações: { hex: '#6BAF7B', i: '🏃', w: [{ e: '🤲', l: 'quero' }, { e: '🚶', l: 'ir' }, { e: '✊', l: 'fazer' }, { e: '🍽️', l: 'comer' }, { e: '🥤', l: 'beber' }, { e: '🤝', l: 'ajuda' }, { e: '🛑', l: 'parar' }, { e: '🎮', l: 'brincar' }, { e: '💤', l: 'dormir' }, { e: '👀', l: 'ver' }, { e: '🚶‍♂️', l: 'fui' }, { e: '🎯', l: 'brinquei' }, { e: '🍴', l: 'comi' }, { e: '🤸', l: 'caí' }, { e: '😭', l: 'chorei' }] },
         sentimentos: { hex: '#6B9DC7', i: '❤️', w: [{ e: '😊', l: 'feliz' }, { e: '😢', l: 'triste' }, { e: '😠', l: 'bravo' }, { e: '😰', l: 'com medo' }, { e: '😴', l: 'cansado' }, { e: '🤕', l: 'dor' }, { e: '😍', l: 'gosto' }, { e: '😤', l: 'não gosto' }] },
         descritores: { hex: '#6B9DC7', i: '📏', w: [{ e: '➕', l: 'mais' }, { e: '➖', l: 'menos' }, { e: '💯', l: 'muito' }, { e: '🤏', l: 'um pouco' }, { e: '👍', l: 'bom' }, { e: '👎', l: 'mau' }, { e: '📍', l: 'aqui' }, { e: '👉', l: 'lá' }] },
         coisas: { hex: '#E47A20', i: '⭐', w: [{ e: '💧', l: 'água' }, { e: '🍎', l: 'comida' }, { e: '🚽', l: 'banheiro' }, { e: '🧸', l: 'brinquedo' }, { e: '📱', l: 'celular' }, { e: '💊', l: 'remédio' }, { e: '👕', l: 'roupa' }] },
         social: { hex: '#C78DA3', i: '💬', w: [{ e: '👋', l: 'oi' }, { e: '🫡', l: 'tchau' }, { e: '🙏', l: 'por favor' }, { e: '🫶', l: 'obrigado' }, { e: '✅', l: 'sim' }, { e: '❌', l: 'não' }, { e: '⏳', l: 'esperar' }, { e: '🎉', l: 'vamos' }] },
+        lugares: { hex: '#4ABFA5', i: '📍', w: [{ e: '🏫', l: 'escola' }, { e: '🏡', l: 'casa' }, { e: '🌳', l: 'parque' }, { e: '👵', l: 'vovó' }, { e: '🌞', l: 'fora' }, { e: '🏠', l: 'dentro' }, { e: '🚗', l: 'carro' }, { e: '🏪', l: 'loja' }] },
+        comentários: { hex: '#E87CA0', i: '💭', w: [{ e: '👁️', l: 'eu vejo' }, { e: '🧠', l: 'eu acho' }, { e: '💗', l: 'eu sinto' }, { e: '👆', l: 'é' }, { e: '👉', l: 'isso é' }, { e: '🤩', l: 'uau' }, { e: '😂', l: 'engraçado' }, { e: '🙋', l: 'meu' }, { e: '💔', l: 'quebrado' }, { e: '😨', l: 'assustador' }] },
+        tempo: { hex: '#7B8EC2', i: '🕐', w: [{ e: '📅', l: 'hoje' }, { e: '🌅', l: 'amanhã' }, { e: '⏪', l: 'ontem' }, { e: '1️⃣', l: 'primeiro' }, { e: '⏭️', l: 'depois' }, { e: '⏩', l: 'após' }, { e: '🏁', l: 'finalmente' }, { e: '⏰', l: 'agora' }] },
         frases: { hex: '#9B7DC7', i: '💜', w: [] }
       },
       binders: {
         todos: { icon: '📋', decks: null },
-        escola: { icon: '🎓', decks: ['pessoas', 'ações', 'social'] },
-        casa: { icon: '🏠', decks: ['pessoas', 'sentimentos', 'coisas', 'descritores'] }
+        escola: { icon: '🎓', decks: ['pessoas', 'ações', 'social', 'lugares', 'tempo', 'comentários'] },
+        casa: { icon: '🏠', decks: ['pessoas', 'sentimentos', 'coisas', 'descritores', 'lugares', 'comentários'] },
+        refeição: { icon: '🍽️', decks: ['pessoas', 'ações', 'coisas', 'descritores', 'social', 'comentários'] },
+        parquinho: { icon: '🛝', decks: ['pessoas', 'ações', 'sentimentos', 'lugares', 'social', 'comentários'] },
+        terapia: { icon: '🧩', decks: ['pessoas', 'ações', 'sentimentos', 'comentários', 'tempo'] }
       }
     }
-  });
-})();
+};

@@ -1,0 +1,19 @@
+When I think about level 3, I envision a highly simplified and low-navigation interface.
+
+For users with level 3 support needs, the system should minimize cognitive load, reduce executive functioning demands, and avoid deep semantic categorization. Many of these users may have limited symbolic understanding, reduced joint attention, and difficulty with multi-step navigation.
+
+So for level 3, I would imagine:
+ • Shallow navigation (ideally one level only)
+ • Limited grid size (e.g., 4–9 symbols per screen, depending on motor control)
+ • Highly consistent motor planning (buttons remain in fixed positions)
+ • Strong emphasis on high-frequency core vocabulary (go, want, more, stop, help)
+ • Visual supports with clear, concrete symbols
+ • Possibly context-based or activity-based boards as an initial stage
+ • Immediate voice output to reinforce cause-effect understanding
+ • Reduced visual clutter and minimal distractors
+
+The idea is that level 3 users should not need to “search” for language. The language should be immediately accessible.
+
+Then, as symbolic understanding and navigation skills improve, the system could progressively expand without changing the motor layout — allowing developmental growth inside the same architecture.
+
+For me, level 3 is about accessibility first, language expansion second.

@@ -1,0 +1,62 @@
+1. Intuitiveness — VERY STRONG POINT
+
+The system was truly built in an intuitive way, and this is evident in three main aspects:
+a clean visual organization;
+predictable navigation (the user quickly understands “where to click next”);
+semantically coherent categories.
+
+This greatly reduces cognitive load, which is essential for:
+children with ASD,
+beginner AAC users.
+
+In clinical practice, this favors spontaneous use, not just guided use.
+
+⸻
+
+2. Linguistic structure that is more communicative than isolated vocabulary
+
+The main difference I noticed is that it does not function merely as a word bank, and this supports the progressive construction of sentences. The combination of linguistic elements promotes real communicative intent; in other words, it moves toward a language model, not just naming.
+
+This is VERY important: the user implicitly learns syntactic patterns; sentence structure begins to be internalized, which aligns with what we call functional linguistic organization in AAC.
+
+⸻
+
+3. Balanced core × fringe vocabulary
+
+I observed the presence of high-frequency words (go, want, more, help, I, you…) combined with contextual vocabulary, which can promote:
+generalization,
+spontaneous communication,
+greater communicative autonomy.
+
+Many communicators fail here because they rely only on nouns. (THIS ALSO HAS TO DO WITH WHO BUILDS THE AAC SYSTEM.)
+
+⸻
+
+4. Clinical suitability for neurodivergent children
+
+It works well because it reduces verbal memory demands;
+provides constant visual support;
+maintains motor predictability, which is important for motor planning;
+and supports communication initiation.
+
+Especially useful for:
+emergent verbal children;
+speech apraxia;
+ASD level 1 and, depending on support needs, some level 2 children;
+children who already use AAC in Portuguese and are moving to a second language.
+
+I will now point out the weaker aspects
+
+I found the communicator very interesting and truly quite intuitive, especially for children who already present a more organized linguistic base and some consolidated symbolic understanding. The structure supports sentence construction and more functional communication in English, which is a very positive point. However, from a clinical perspective, it is important to make some considerations.
+
+For children with significant language difficulties, both expressive and receptive, access may become more challenging, mainly because the system already relies on an organization based on semantic categories. This requires the child to perform semantic planning, that is, to know where to look for a word within a category, anticipate navigation paths, and understand relationships between concepts.
+
+Children with moderate to severe intellectual disability or autistic children with level 3 support needs—who often do not yet have consolidated symbolic understanding—may experience considerable difficulty in this process. In these cases, the challenge is not only the number of symbols available, but especially the need for navigation. Even when there are few options on the screen, the requirement to access categories and move through steps to reach a message already demands cognitive and linguistic skills that are not yet established. Many of these children are still at earlier levels of communication and need more direct access between symbol and communicative function, without such complex semantic mediation.
+
+Another aspect I felt was missing is the expansion of vocabulary aimed at broader communicative functions (THIS FOR LEVEL 1 AND 2 SUPPORT USERS, FOR EXAMPLE), such as words related to where, when, how, with whom, descriptions, etc., as well as structures that support commenting, narratives, and more complete organization of communication. These elements help expand language beyond immediate requesting, promoting greater communicative autonomy and social participation.
+
+Additionally, in more flexible communicators—such as those seen, for example, in AG or TD Snap—we can adjust the grid size according to the child’s needs and adapt the vocabulary based on specific activities and the social words most present in the child’s repertoire. This level of personalization greatly facilitates initial access, as it respects the user’s linguistic and cognitive developmental level, allowing for more gradual progression within AAC.
+
+It is also important to consider motor aspects. For users with motor difficulties, navigation between screens can become an additional barrier. I noticed that in some actions that require screen movement, such as scrolling to access other items, the navigation arrow is very small, which may hinder precise activation. For children with motor impairments, poor fine motor coordination, or motor planning difficulties, this detail can increase touch errors, generate frustration, and reduce autonomy in using the communicator.
+
+Therefore, although it is a well-structured and powerful communicator for users who already have emergent or functional language, it may not be the most appropriate option as a first-choice system for children with more significant cognitive-linguistic and/or motor impairments. For these profiles, systems with more direct access, lower navigation demands, and greater personalization possibilities tend to be more accessible and effective.

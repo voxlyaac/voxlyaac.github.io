@@ -70,11 +70,13 @@
 
     <div class="strip-ops" id="btns">
       <button class="sbtn sbtn-clear" id="bClear" type="button">✕</button>
+      <button class="sbtn sbtn-back" id="bBack" type="button">⌫</button>
       <button class="sbtn sbtn-save" id="bSave" type="button">⭐</button>
       <button class="sbtn sbtn-speak" id="bSpeak" type="button">▶</button>
     </div>
 
     <div class="deck-area">
+      <div class="quick-access" id="quickAccess"></div>
       <div class="shelf-wrap" id="shelfWrap">
         <button class="fan-arrow fan-arrow-up" id="shelfUp" type="button">▲</button>
         <div class="shelf-scroll" id="shelfScroll">
@@ -167,6 +169,16 @@
           <div class="setting-row"><span class="setting-label" data-i18n="labelAnimations">Animations</span>
             <div class="toggle on" id="togAnim"></div>
           </div>
+          <div class="setting-row"><span class="setting-label" data-i18n="labelHighContrast">High contrast</span>
+            <div class="toggle" id="togContrast"></div>
+          </div>
+          <div class="setting-row"><span class="setting-label" data-i18n="labelGridSize">Grid size</span>
+            <select class="setting-select" id="gridSizeSelect" title="Grid size">
+              <option value="large" data-i18n-opt="gridLarge">Large</option>
+              <option value="medium" selected data-i18n-opt="gridMedium">Medium</option>
+              <option value="small" data-i18n-opt="gridSmall">Small</option>
+            </select>
+          </div>
         </div>
         <div class="options-section">
           <div class="options-section-title" data-i18n="sectionLanguage">Language</div>
@@ -208,7 +220,7 @@
             <span class="setting-label" data-i18n="labelTutorial">App tutorial</span>
             <button class="report-open-btn" id="tutorialBtn" type="button" data-i18n="btnShowTutorial">Show</button>
           </div>
-          <div class="setting-version">v1.0.1</div>
+          <div class="setting-version">v2.0.0</div>
         </div>
         <div class="options-section">
           <div class="options-section-title" data-i18n="sectionReports">Reports</div>
@@ -260,20 +272,9 @@
     </div>
   </div>
 
-  <script src="lang.js"></script>
-  <script src="langs/en.js"></script>
-  <script src="langs/he.js"></script>
-  <script src="langs/uk.js"></script>
-  <script src="langs/pt.js"></script>
   <script src="https://js.puter.com/v2/"></script>
-  <script src="profiles.js"></script>
   <div class="update-toast" id="updateToast"></div>
-  <script src="stats.js"></script>
-  <script src="app.js"></script>
-  <script src="ai-friend.js"></script>
-  <script src="chat.js"></script>
-  <script src="reports.js"></script>
-  <script src="tutorial.js"></script>
+  <script type="module" src="main.js"></script>
 </body>
 
 </html>
