@@ -274,7 +274,8 @@
 
   <script src="https://js.puter.com/v2/"></script>
   <div class="update-toast" id="updateToast"></div>
-  <script type="module" src="main.js"></script>
+  <script>function _err(m){var d=document.createElement('div');d.style.cssText='position:fixed;top:0;left:0;right:0;padding:12px;background:red;color:white;font:12px monospace;z-index:99999;white-space:pre-wrap;max-height:40vh;overflow:auto';d.textContent=m;document.body.appendChild(d)}window.onerror=function(m,s,l,c){_err(m+'\n'+s+':'+l+':'+c)};window.addEventListener('unhandledrejection',function(e){_err('Promise: '+e.reason)});</script>
+  <script type="module">import('./main.js').catch(function(e){_err('Module: '+e.message+'\n'+e.stack)})</script>
 </body>
 
 </html>

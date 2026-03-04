@@ -1,4 +1,4 @@
-const CACHE = 'aac-v3.9';
+const CACHE = 'aac-v4.0';
 const ASSETS = [
   './',
   './index.html',
