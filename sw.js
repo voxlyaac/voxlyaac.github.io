@@ -27,6 +27,7 @@ const ASSETS = [
   './components/suggest-bar.js',
   './components/chat.js',
   './components/reports.js',
+  './components/quick-access.js',
   './components/tutorial.js',
   './manifest.webmanifest',
   './icon-192.svg',

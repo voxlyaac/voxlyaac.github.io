@@ -17,6 +17,7 @@ import * as ProfileSwitcher from './components/profile-switcher.js';
 import * as SuggestBar from './components/suggest-bar.js';
 import * as Chat from './components/chat.js';
 import * as Reports from './components/reports.js';
+import * as QuickAccess from './components/quick-access.js';
 import * as Tutorial from './components/tutorial.js';
 
 // Load all language packs
@@ -39,6 +40,7 @@ Modal.setProfileRefreshCallback(function () {
 // Init components in correct order
 Strip.init();
 StripOps.init();
+QuickAccess.init();
 DeckArea.init();
 BinderBar.init();
 Modal.init();

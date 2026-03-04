@@ -4,7 +4,6 @@ import state from '../state.js';
 import { on } from '../events.js';
 import * as Lang from '../lang.js';
 import * as Stats from '../stats.js';
-import * as Profiles from '../profiles.js';
 import { addWord } from './strip.js';
 
 var suggestBar = document.getElementById('suggestBar');
@@ -126,40 +125,18 @@ function updateStripAi() {
   if (el) el.style.display = enabled ? '' : 'none';
 }
 
-function hookSettings() {
-  var tog = document.getElementById('togCompanion');
-  if (tog) {
-    tog.classList.toggle('on', enabled);
-    tog.onclick = function () {
-      enabled = !enabled;
-      this.classList.toggle('on', enabled);
-      localStorage.setItem('aac-friend-enabled', enabled);
-      Profiles.save();
-      updateStripAi();
-      if (!enabled) hideSuggestions();
-      else updateSuggestions();
-    };
-  }
-
-  var togSugg = document.getElementById('togSuggestions');
-  if (togSugg) {
-    togSugg.classList.toggle('on', suggestionsEnabled);
-    togSugg.onclick = function () {
-      suggestionsEnabled = !suggestionsEnabled;
-      this.classList.toggle('on', suggestionsEnabled);
-      localStorage.setItem('aac-friend-suggestions', suggestionsEnabled);
-      Profiles.save();
-      if (suggestionsEnabled) updateSuggestions();
-      else hideSuggestions();
-    };
-  }
+function syncFromStorage() {
+  enabled = localStorage.getItem('aac-friend-enabled') !== 'false';
+  suggestionsEnabled = localStorage.getItem('aac-friend-suggestions') !== 'false';
+  updateStripAi();
+  if (enabled && suggestionsEnabled) updateSuggestions();
+  else hideSuggestions();
 }
 
 export function reinit() {
   enabled = localStorage.getItem('aac-friend-enabled') !== 'false';
   suggestionsEnabled = localStorage.getItem('aac-friend-suggestions') !== 'false';
   buildWordIndex();
-  hookSettings();
   updateStripAi();
   updateSuggestions();
 }
@@ -168,8 +145,12 @@ export function init() {
   enabled = localStorage.getItem('aac-friend-enabled') !== 'false';
   suggestionsEnabled = localStorage.getItem('aac-friend-suggestions') !== 'false';
   buildWordIndex();
-  hookSettings();
   updateStripAi();
+
+  // React to AI toggle changes from settings.js
+  on('settings:change', function (d) {
+    if (d.key === 'companion' || d.key === 'suggestions') syncFromStorage();
+  });
 
   // Listen to events instead of MutationObserver
   on('sentence:change', function () {
