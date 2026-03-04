@@ -1,6 +1,7 @@
 // components/search.js — Card search (ES module)
 
 import state from '../state.js';
+import { emit } from '../events.js';
 import * as Lang from '../lang.js';
 import { addWord } from './strip.js';
 import { openDeck, getCurrentDeck, bindCard } from './deck-area.js';
@@ -11,7 +12,8 @@ let shelfWrap, openView;
 function closeSearch() {
   searchArea.classList.remove('open');
   searchInput.value = '';
-  if (getCurrentDeck()) { openDeck(getCurrentDeck()); } else { openView.classList.remove('vis'); shelfWrap.classList.remove('out'); }
+  searchInput.blur();
+  if (getCurrentDeck()) { openDeck(getCurrentDeck()); } else { openView.classList.remove('vis'); shelfWrap.classList.remove('out'); emit('deck:close'); }
 }
 
 export function init() {
@@ -45,6 +47,7 @@ export function init() {
     if (!q) { closeSearch(); return; }
     const g = document.getElementById('fan'); g.innerHTML = '';
     shelfWrap.classList.add('out'); openView.classList.add('vis');
+    emit('deck:open');
     document.getElementById('oIcon').textContent = '🔍';
     document.getElementById('oTitle').textContent = 'search';
     Object.entries(state.DECKS).forEach(([dk, d]) => {

@@ -132,16 +132,14 @@ export function bindCard(card) {
       const sr = document.getElementById('strip').getBoundingClientRect();
       if (e.clientY >= sr.top - 15 && e.clientY <= sr.bottom + 15) {
         addWord(card.dataset.emoji, card.dataset.label, card.dataset.color, card.dataset.img);
-        openView.classList.remove('vis');
-        setTimeout(() => shelfWrap.classList.remove('out'), 30);
+        closeDeck();
       }
       ghost.remove(); ghost = null;
       state.isDrag = false;
       document.getElementById('strip').classList.remove('ready');
     } else if (!mv) {
       addWord(card.dataset.emoji, card.dataset.label, card.dataset.color, card.dataset.img);
-      openView.classList.remove('vis');
-      setTimeout(() => shelfWrap.classList.remove('out'), 30);
+      closeDeck();
     }
   });
   card.addEventListener('pointercancel', () => {

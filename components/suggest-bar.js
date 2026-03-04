@@ -12,6 +12,7 @@ var suggestPills = document.getElementById('suggestPills');
 var enabled = true;
 var suggestionsEnabled = true;
 var suggestDebounce = null;
+var deckOpen = false;
 
 var WORD_INDEX = {};
 
@@ -119,7 +120,7 @@ function resolveSuggestions(labelList, currentLabels) {
 }
 
 export function updateSuggestions() {
-  if (!enabled || !suggestionsEnabled) { hideSuggestions(); return; }
+  if (!enabled || !suggestionsEnabled || deckOpen) { hideSuggestions(); return; }
   if (!suggestBar || !suggestPills) return;
 
   buildWordIndex();
@@ -217,9 +218,11 @@ export function init() {
     suggestDebounce = setTimeout(updateSuggestions, 50);
   });
   on('deck:open', function () {
+    deckOpen = true;
     hideSuggestions();
   });
   on('deck:close', function () {
+    deckOpen = false;
     updateSuggestions();
   });
   on('deck:change', function () {
