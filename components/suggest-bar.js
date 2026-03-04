@@ -34,19 +34,74 @@ function buildWordIndex() {
   }
 }
 
-function getSuggestions(sentenceArr) {
-  var map = Lang.suggestions() || {};
-  if (!sentenceArr || sentenceArr.length === 0) {
-    return resolveSuggestions(map[''] || []);
-  }
+function getContextKey(sentenceArr) {
+  if (!sentenceArr || sentenceArr.length === 0) return '';
+  var labels = sentenceArr.map(function (w) { return w.label.toLowerCase(); });
+  if (labels.length >= 2) return labels[labels.length - 2] + ' ' + labels[labels.length - 1];
+  return labels[labels.length - 1];
+}
+
+function getStaticList(map, sentenceArr) {
+  if (!sentenceArr || sentenceArr.length === 0) return map[''] || [];
   var labels = sentenceArr.map(function (w) { return w.label.toLowerCase(); });
   if (labels.length >= 2) {
     var twoKey = labels[labels.length - 2] + ' ' + labels[labels.length - 1];
-    if (map[twoKey]) return resolveSuggestions(map[twoKey], labels);
+    if (map[twoKey]) return map[twoKey];
   }
   var oneKey = labels[labels.length - 1];
-  if (map[oneKey]) return resolveSuggestions(map[oneKey], labels);
-  return resolveSuggestions(map[''] || [], labels);
+  if (map[oneKey]) return map[oneKey];
+  return map[''] || [];
+}
+
+function mergeLearnedSuggestions(staticList, contextKey, currentLabels) {
+  var learned = Stats.getNextWordCounts();
+  var learnedForCtx = learned[contextKey];
+  // Fallback: if two-word context has no data, try one-word context
+  if (!learnedForCtx && contextKey.indexOf(' ') !== -1) {
+    var oneWord = contextKey.split(' ').pop();
+    learnedForCtx = learned[oneWord];
+  }
+
+  var used = currentLabels || [];
+  var seen = {};
+  var all = [];
+
+  // Add static words with their learned counts (or 0)
+  for (var i = 0; i < staticList.length; i++) {
+    var sw = staticList[i].toLowerCase();
+    if (used.indexOf(sw) !== -1 || seen[sw]) continue;
+    seen[sw] = true;
+    all.push({ word: sw, count: learnedForCtx ? (learnedForCtx[sw] || 0) : 0 });
+  }
+
+  // Add learned words not already included
+  if (learnedForCtx) {
+    for (var w in learnedForCtx) {
+      if (!seen[w] && used.indexOf(w) === -1 && WORD_INDEX[w]) {
+        seen[w] = true;
+        all.push({ word: w, count: learnedForCtx[w] });
+      }
+    }
+  }
+
+  // Sort by count descending — most used first (leftmost pill)
+  all.sort(function (a, b) { return b.count - a.count; });
+
+  // Return top words (resolveSuggestions caps at 4)
+  var result = [];
+  for (var j = 0; j < all.length; j++) {
+    result.push(all[j].word);
+  }
+  return result;
+}
+
+function getSuggestions(sentenceArr) {
+  var map = Lang.suggestions() || {};
+  var currentLabels = (sentenceArr || []).map(function (w) { return w.label.toLowerCase(); });
+  var staticList = getStaticList(map, sentenceArr);
+  var contextKey = getContextKey(sentenceArr);
+  var merged = mergeLearnedSuggestions(staticList, contextKey, currentLabels);
+  return resolveSuggestions(merged, currentLabels);
 }
 
 function resolveSuggestions(labelList, currentLabels) {

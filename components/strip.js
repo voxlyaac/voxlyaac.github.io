@@ -19,6 +19,16 @@ function updateStripArrows() {
 }
 
 export function addWord(emoji, label, color, img) {
+  // Track word transition before adding to sentence
+  var labels = state.sentence.map(function (w) { return w.label.toLowerCase(); });
+  var ctx = '';
+  if (labels.length >= 2) {
+    ctx = labels[labels.length - 2] + ' ' + labels[labels.length - 1];
+  } else if (labels.length === 1) {
+    ctx = labels[labels.length - 1];
+  }
+  Stats.track('nextWord', { context: ctx, word: label });
+
   state.sentence.push({ emoji, label, color, img });
   renderStrip();
   Stats.track('cardTap', { label: label });

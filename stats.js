@@ -24,6 +24,7 @@ function emptyDay() {
   return {
     cardTaps: {},
     deckOpens: {},
+    nextWord: {},
     sentencesSpoken: 0,
     aiAssistUsed: 0,
     suggestionsUsed: 0,
@@ -131,6 +132,15 @@ export function track(event, data) {
     case 'suggestionUsed':
       day.suggestionsUsed++;
       break;
+    case 'nextWord':
+      var ctx = (data && data.context) ? data.context : '';
+      var word = (data && data.word) ? data.word.toLowerCase() : '';
+      if (word) {
+        if (!day.nextWord) day.nextWord = {};
+        if (!day.nextWord[ctx]) day.nextWord[ctx] = {};
+        day.nextWord[ctx][word] = (day.nextWord[ctx][word] || 0) + 1;
+      }
+      break;
   }
   scheduleSave();
 }
@@ -161,6 +171,12 @@ export function getRange(startDate, endDate) {
       for (const dk in d.deckOpens) {
         result.deckOpens[dk] = (result.deckOpens[dk] || 0) + d.deckOpens[dk];
       }
+      for (const ctx in (d.nextWord || {})) {
+        if (!result.nextWord[ctx]) result.nextWord[ctx] = {};
+        for (const w in d.nextWord[ctx]) {
+          result.nextWord[ctx][w] = (result.nextWord[ctx][w] || 0) + d.nextWord[ctx][w];
+        }
+      }
       result.sentencesSpoken += d.sentencesSpoken;
       result.aiAssistUsed += d.aiAssistUsed;
       result.suggestionsUsed += d.suggestionsUsed;
@@ -188,6 +204,23 @@ export function getMonth() {
   const start = now.getFullYear() + '-' +
     String(now.getMonth() + 1).padStart(2, '0') + '-01';
   return getRange(start, todayKey());
+}
+
+export function getNextWordCounts() {
+  if (!cache) return {};
+  var result = {};
+  var keys = Object.keys(cache.days);
+  for (var i = 0; i < keys.length; i++) {
+    var nw = cache.days[keys[i]].nextWord;
+    if (!nw) continue;
+    for (var ctx in nw) {
+      if (!result[ctx]) result[ctx] = {};
+      for (var w in nw[ctx]) {
+        result[ctx][w] = (result[ctx][w] || 0) + nw[ctx][w];
+      }
+    }
+  }
+  return result;
 }
 
 export function deleteForProfile(profileName) {
